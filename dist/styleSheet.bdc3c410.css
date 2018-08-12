@@ -1,0 +1,11 @@
+:root {
+  --list-item_height: 50px;
+  --list-item_border-color: lightGray;
+}
+body {
+  padding: 20px 10px;
+}
+input,
+li {
+  width: 100%;
+}
