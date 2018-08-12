@@ -14,16 +14,35 @@ export default class App extends Component {
         { id: uuid(), name: 'Bathroom' },
         { id: uuid(), name: 'Kitchen' },
       ],
+      selectedBox: null,
+    }
+  }
+
+  inputHandler(value) {
+    const { boxes } = this.state
+    const newBox = { name: value, id: uuid() }
+    this.setState({ boxes: [newBox, ...boxes] })
+  }
+
+  boxClickHandler(id) {
+    if (id === this.state.selectedBox) {
+      this.setState({ selectedBox: null })
+    } else {
+      this.setState({ selectedBox: id })
     }
   }
 
   render() {
-    const { boxes } = this.state
-
+    const { boxes, selectedBox } = this.state
+    console.log(boxes)
     return (
       <div className={styles.container}>
-        <Input />
-        <BoxList boxes={boxes} />
+        <Input inputHandler={this.inputHandler.bind(this)} />
+        <BoxList
+          selected={selectedBox}
+          clickHandler={this.boxClickHandler}
+          boxes={boxes}
+        />
       </div>
     )
   }

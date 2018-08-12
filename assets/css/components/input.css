@@ -3,4 +3,5 @@
   border-width: 1px;
   border-style: solid;
   border-color: var(--list-item_border-color);
+  text-align: center;
 }

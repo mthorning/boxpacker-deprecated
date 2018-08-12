@@ -4,12 +4,12 @@
 }
 .listItem {
   list-style-type: none;
-  height: var(--list-item_height);
-  line-height: var(--list-item_height);
+  min-height: var(--list-item_height);
   border-width: 1px;
   border-style: solid;
   border-color: var(--list-item_border-color);
 }
-.padding {
+.nameContainer {
   padding: 0 5px;
+  line-height: var(--list-item_height);
 }

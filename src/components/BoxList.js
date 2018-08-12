@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-import { list, listItem, padding } from '../../assets/css/components/list'
+import UnorderedList from './UnorderedList'
+import ItemList from './ItemList'
 
 export default class BoxList extends Component {
   render() {
-    const { boxes } = this.props
-    const boxList = boxes.map(box => (
-      <li className={listItem} key={box.id}>
-        <div className={padding}>{box.name}</div>
-      </li>
-    ))
-    return <ul className={list}>{boxList}</ul>
+    const { boxes, selectedBox, boxClickHandler } = this.props
+    console.log(boxes)
+    return (
+      <UnorderedList
+        entities={boxes}
+        clickHandler={boxClickHandler}
+        selected={selectedBox}
+        NestedItem={ItemList}
+      />
+    )
   }
 }
