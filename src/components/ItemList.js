@@ -5,6 +5,6 @@ import DetailsPane from './DetailsPane'
 export default class ItemList extends Component {
   render() {
     const { items, display } = this.props
-    return <UnorderedList entities={items} InnerItem={DetailsPane} />
+    return null /*<UnorderedList entities={items} />*/
   }
 }

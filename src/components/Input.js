@@ -3,7 +3,7 @@ import { inputBox } from '/assets/css/components/input'
 
 export default class Input extends Component {
   onUpdate(e) {
-    const { value } = this.textInput
+    const { boxName } = this.textInput
     if (e.which === 13 && value) {
       const { inputHandler } = this.props
       inputHandler(value)
