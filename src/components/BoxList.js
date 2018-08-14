@@ -6,14 +6,32 @@ import ItemList from './ItemList'
 import Input from './Input'
 
 class BoxList extends Component {
+  boxAddCallback(id) {
+    this.props.selectBox(id)
+  }
+
+  clickHandler(id) {
+    const { selectBox, selectedBox } = this.props
+    if (id === selectedBox) {
+      selectBox(null)
+    } else {
+      selectBox(id)
+    }
+  }
+
   render() {
-    const { boxes, selectedBox, addBox, selectBox } = this.props
+    const { boxes, selectedBox, addBox } = this.props
     return (
       <div>
-        <Input inputHandler={addBox} />
+        <Input
+          inputHandler={addBox}
+          afterInput={this.boxAddCallback.bind(this)}
+          placeholder="Enter box name."
+        />
         <UnorderedList
+          backgroundColor={'#f48f42'}
           entities={boxes}
-          clickHandler={selectBox}
+          clickHandler={this.clickHandler.bind(this)}
           selected={selectedBox}
           NestedItem={ItemList}
         />

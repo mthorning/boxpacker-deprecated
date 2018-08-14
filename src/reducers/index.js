@@ -1,20 +1,20 @@
-import testData from '../../test-data'
+import { sort } from '../utils'
 
 const initialState = {
   selectedBox: null,
   selectedItem: null,
-  items: testData.items,
-  boxes: testData.boxes,
+  items: [],
+  boxes: [],
 }
 
 const rootReducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case 'ADD_BOX':
-      return { ...state, boxes: [...state.boxes, action.payload] }
+      return { ...state, boxes: sort([...state.boxes, action.payload]) }
     case 'SELECT_BOX':
       return { ...state, selectedBox: action.payload }
     case 'ADD_ITEM':
-      return { ...state, items: [...state.items, action.payload] }
+      return { ...state, items: sort([...state.items, action.payload]) }
     case 'SELECT_ITEM':
       return { ...state, selectedItem: action.payload }
     default:

@@ -9,6 +9,9 @@
   border-style: solid;
   border-color: var(--list-item_border-color);
 }
+.listContents {
+  padding: 10px;
+}
 .nameContainer {
   padding: 0 5px;
   line-height: var(--list-item_height);
