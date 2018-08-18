@@ -1,10 +1,10 @@
-import { render } from 'react-dom'
-import React from 'react'
-import App from './components/App'
+import React, { Component } from 'react'
+import BoxList from './components/BoxList'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import testData from '../test-data'
+import styles from '../assets/css/components/app.css'
 
 const store = createStore(rootReducer, testData)
 
@@ -15,9 +15,15 @@ if (module.hot) {
     store.replaceReducer(nextRootReducer)
   })
 }
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
-)
+
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <div className={styles.container}>
+          <BoxList />
+        </div>
+      </Provider>
+    )
+  }
+}
