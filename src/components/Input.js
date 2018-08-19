@@ -4,6 +4,10 @@ import uuid from 'uuid'
 import { proper } from '../utils'
 
 export default class Input extends Component {
+  clickHandler = e => {
+    e.stopPropagation()
+    this.textInput.focus()
+  }
   onUpdate(e) {
     const { afterInput } = this.props
     const name = proper(this.textInput.value)
@@ -31,6 +35,7 @@ export default class Input extends Component {
       <input
         placeholder={placeholder}
         ref={input => (this.textInput = input)}
+        onClick={this.clickHandler}
         className={inputBox}
         type="text"
         onKeyPress={e => this.onUpdate(e)}
