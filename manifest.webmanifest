@@ -1,0 +1,26 @@
+{
+  "short_name": "BoxPacker",
+  "name": "Box Packer App",
+  "icons": [
+    {
+      "src": "./assets/images/icons/icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "./assets/images/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./assets/images/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html?source=pwa",
+  "background_color": "#FFF",
+  "display": "standalone",
+  "scope": ".",
+  "theme_color": "#3367D6"
+}

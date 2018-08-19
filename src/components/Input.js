@@ -34,7 +34,6 @@ export default class Input extends Component {
         className={inputBox}
         type="text"
         onKeyPress={e => this.onUpdate(e)}
-        autoFocus="autoFocus"
       />
     )
   }

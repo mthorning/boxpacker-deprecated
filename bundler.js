@@ -1,13 +1,25 @@
 const Bundler = require('parcel-bundler')
-const app = require('express')()
+const fs = require('fs-extra')
+const express = require('express')
+const app = express()
 const { generateSW } = require('workbox-build')
 
-const bundler = new Bundler('index.html')
+const options = {
+  contentHash: true,
+  watch: true,
+}
+
+fs.remove('./dist')
+
+const bundler = new Bundler('index.html', options)
 bundler.on('bundled', bundle => {
-  const swDest = 'dist/sw.js'
+  const swDest = './dist/sw.js'
   generateSW({
     swDest,
-    globDirectory: '.',
+    globDirectory: 'dist',
+    globPatterns: ['*.{js,png,html,css,webmanifest}'],
+    clientsClaim: true,
+    skipWaiting: true,
   }).then(({ count, size }) => {
     console.log(
       `Generated ${swDest}, which will precache ${count} files, totaling ${size} bytes.`,
@@ -16,5 +28,6 @@ bundler.on('bundled', bundle => {
 })
 
 app.use(bundler.middleware())
+// app.use(express.static(__dirname + '/dist'))
 app.listen(1234)
 console.log('listening on port 1234')

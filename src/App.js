@@ -7,7 +7,7 @@ import testData from '../test-data'
 import styles from '../assets/css/components/app.css'
 
 const store = createStore(rootReducer, testData)
-
+const test = false
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   module.hot.accept('./reducers', () => {
