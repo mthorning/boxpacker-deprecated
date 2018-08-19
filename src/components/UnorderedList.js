@@ -7,16 +7,21 @@ import {
 } from '../../assets/css/components/list'
 
 export default class UnorderedList extends Component {
+  onClick = (id, e) => {
+    e.stopPropagation()
+    const { clickHandler } = this.props
+    clickHandler(id)
+  }
   renderItem = entity => {
-    const { NestedItem, clickHandler, selected, backgroundColor } = this.props
-    const textAlign = selected === entity.id ? 'center' : 'left'
-
+    const { NestedItem, selected, backgroundColor, centerOnSelect } = this.props
+    const textAlign =
+      centerOnSelect && selected === entity.id ? 'center' : 'left'
     return (
       <li
         className={listItem}
         style={{ backgroundColor, textAlign }}
         key={entity.id}
-        onClick={() => clickHandler(entity.id)}
+        onClick={this.onClick.bind(this, entity.id)}
       >
         <div className={listContents}>
           <div className={nameContainer}>{entity.name}</div>

@@ -30,6 +30,7 @@ class BoxList extends Component {
         />
         <UnorderedList
           backgroundColor={'#f48f42'}
+          centerOnSelect={true}
           entities={boxes}
           clickHandler={this.clickHandler.bind(this)}
           selected={selectedBox}

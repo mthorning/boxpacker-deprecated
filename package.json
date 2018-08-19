@@ -10,8 +10,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "uuid": "^3.3.2",
-    "workbox-sw": "^3.4.1"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
