@@ -17,26 +17,26 @@ const options = {
     // },
     logLevel: 3,
     sourceMaps: false,
-    detailedReport: true,
-  },
+    detailedReport: true
+  }
 }
 fs.remove('./dist')
 
 const bundler = new Bundler('index.html', options[env])
-bundler.on('bundled', bundle => {
-  const swDest = './dist/sw.js'
-  generateSW({
-    swDest,
-    globDirectory: 'dist',
-    globPatterns: ['*.{js,png,html,css,webmanifest}'],
-    clientsClaim: true,
-    skipWaiting: true,
-  }).then(({ count, size }) => {
-    console.log(
-      `Generated ${swDest}, which will precache ${count} files, totaling ${size} bytes.`,
-    )
-  })
-})
+// bundler.on('bundled', bundle => {
+//   const swDest = './dist/sw.js'
+//   generateSW({
+//     swDest,
+//     globDirectory: 'dist',
+//     globPatterns: ['*.{js,png,html,css,webmanifest}'],
+//     clientsClaim: true,
+//     skipWaiting: true,
+//   }).then(({ count, size }) => {
+//     console.log(
+//       `Generated ${swDest}, which will precache ${count} files, totaling ${size} bytes.`,
+//     )
+//   })
+// })
 
 app.use(bundler.middleware())
 app.listen(1234)

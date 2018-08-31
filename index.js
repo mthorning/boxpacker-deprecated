@@ -1,6 +1,5 @@
-import './assets/css/styleSheet.css'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import App from './src/app'
+import App from './src/App'
 
 render(<App />, document.getElementById('root'))

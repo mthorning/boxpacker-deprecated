@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import BoxList from './components/BoxList'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import testData from '../test-data'
-import styles from '../assets/css/components/app.css'
+import Item from './components/Item'
 
 const store = createStore(rootReducer, testData)
 const test = false
@@ -20,9 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className={styles.container}>
-          <BoxList />
-        </div>
+        <Item />
       </Provider>
     )
   }
