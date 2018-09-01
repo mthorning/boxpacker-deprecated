@@ -1,41 +1,37 @@
 import uuid from 'uuid'
-import { sort } from './src/utils'
 
 const kitchen = uuid(),
   bedroom = uuid(),
   bathroom = uuid(),
   frontRoom = uuid()
 
-const boxes = sort([
-  { id: kitchen, name: 'Kitchen' },
-  { id: bedroom, name: 'Bedroom' },
-  { id: bathroom, name: 'Bathroom' },
-  { id: frontRoom, name: 'Front Room' },
-])
-
 const items = [
-  { id: uuid(), name: 'spoons', box: kitchen },
-  { id: uuid(), name: 'plates', box: kitchen },
-  { id: uuid(), name: 'knives', box: kitchen },
-  { id: uuid(), name: 'forks', box: kitchen },
-  { id: uuid(), name: 'bowls', box: kitchen },
-  { id: uuid(), name: 'pillow', box: bedroom },
-  { id: uuid(), name: 'blankets', box: bedroom },
-  { id: uuid(), name: 'socks', box: bedroom },
-  { id: uuid(), name: 'shirts', box: bedroom },
-  { id: uuid(), name: 'jeans', box: bedroom },
-  { id: uuid(), name: 'lamp', box: bedroom },
-  { id: uuid(), name: 'toothbrush', box: bathroom },
-  { id: uuid(), name: 'toothpaste', box: bathroom },
-  { id: uuid(), name: 'towel', box: bathroom },
-  { id: uuid(), name: 'flannel', box: bathroom },
-  { id: uuid(), name: 'soap', box: bathroom },
-  { id: uuid(), name: 'mouthwash', box: bathroom },
-  { id: uuid(), name: 'hair brush', box: bathroom },
-  { id: uuid(), name: 'remote', box: frontRoom },
-  { id: uuid(), name: 'magazine', box: frontRoom },
-  { id: uuid(), name: 'candles', box: frontRoom },
-  { id: uuid(), name: 'singing bowl', box: frontRoom },
+  { type: 'box', id: kitchen, name: 'Kitchen' },
+  { type: 'box', id: bedroom, name: 'Bedroom' },
+  { type: 'box', id: bathroom, name: 'Bathroom' },
+  { type: 'box', id: frontRoom, name: 'Front Room' },
+  { type: 'content', id: uuid(), name: 'spoons', box: kitchen },
+  { type: 'content', id: uuid(), name: 'plates', box: kitchen },
+  { type: 'content', id: uuid(), name: 'knives', box: kitchen },
+  { type: 'content', id: uuid(), name: 'forks', box: kitchen },
+  { type: 'content', id: uuid(), name: 'bowls', box: kitchen },
+  { type: 'content', id: uuid(), name: 'pillow', box: bedroom },
+  { type: 'content', id: uuid(), name: 'blankets', box: bedroom },
+  { type: 'content', id: uuid(), name: 'socks', box: bedroom },
+  { type: 'content', id: uuid(), name: 'shirts', box: bedroom },
+  { type: 'content', id: uuid(), name: 'jeans', box: bedroom },
+  { type: 'content', id: uuid(), name: 'lamp', box: bedroom },
+  { type: 'content', id: uuid(), name: 'toothbrush', box: bathroom },
+  { type: 'content', id: uuid(), name: 'toothpaste', box: bathroom },
+  { type: 'content', id: uuid(), name: 'towel', box: bathroom },
+  { type: 'content', id: uuid(), name: 'flannel', box: bathroom },
+  { type: 'content', id: uuid(), name: 'soap', box: bathroom },
+  { type: 'content', id: uuid(), name: 'mouthwash', box: bathroom },
+  { type: 'content', id: uuid(), name: 'hair brush', box: bathroom },
+  { type: 'content', id: uuid(), name: 'remote', box: frontRoom },
+  { type: 'content', id: uuid(), name: 'magazine', box: frontRoom },
+  { type: 'content', id: uuid(), name: 'candles', box: frontRoom },
+  { type: 'content', id: uuid(), name: 'singing bowl', box: frontRoom }
 ]
 
-export default { boxes, items }
+export default { items }

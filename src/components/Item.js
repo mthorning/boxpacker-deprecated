@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon } from 'antd'
-import styles from '../assets/css/components/item.css'
+import { Input, Icon } from 'antd'
+import styles from '../assets/css/components/items.css'
 
 export default class Item extends Component {
-  state = {
-    deleteVisible: false,
-    edit: false,
-    value: 'test'
+  constructor(props) {
+    super(props)
+    this.state = {
+      deleteVisible: false,
+      edit: false,
+      prevEditProp: null,
+      name: props.name
+    }
   }
+
   enterEdit = () => {
     this.setState({ edit: true })
   }
   exitEdit = () => {
-    this.setState({ edit: false })
+    this.setState({ edit: false, deleteVisible: false })
   }
   changeValue = event => {
-    this.setState({ value: event.target.value })
+    const { editItem, id } = this.props
+    const name = event.target.value
+    this.setState({ name })
+    editItem({ name, id })
   }
   showDelete = () => {
     this.setState({ deleteVisible: true })
@@ -23,14 +31,23 @@ export default class Item extends Component {
   hideDelete = () => {
     this.setState({ deleteVisible: false })
   }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.changeEdit !== prevState.prevEditProp) {
+      return {
+        ...prevState,
+        prevEditProp: nextProps.changeEdit,
+        edit: false
+      }
+    }
+    return null
+  }
   render() {
-    const { edit, value, deleteVisible } = this.state
+    const { deleteVisible, edit, name } = this.state
     return (
-      <div>
+      <div onBlur={this.exitEdit}>
         {edit && (
           <Input
-            value={value}
-            onBlur={this.exitEdit}
+            value={name}
             onPressEnter={this.exitEdit}
             onChange={this.changeValue}
           />
@@ -42,7 +59,7 @@ export default class Item extends Component {
             onMouseLeave={this.hideDelete}
             className={styles.itemName}
           >
-            {value}
+            {name}
             {deleteVisible && (
               <Icon
                 className={styles.icon}

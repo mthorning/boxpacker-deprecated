@@ -1,5 +1,10 @@
+.container {
+  padding: 4px 11px;
+  list-style-type: none;
+  border: 4px soild red;
+}
 .itemName {
-  border: 1px solid #333;
+  border: 1px solid rgba(0, 0, 0, 0.65);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -8,6 +13,7 @@
   margin: 0;
   height: 32px;
   line-height: 32px;
+  user-select: none;
 }
 .icon {
   font-size: 16px;
