@@ -1,11 +1,18 @@
 .container {
   padding: 4px 11px;
   list-style-type: none;
-  border: 4px soild red;
+}
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+.itemContainer {
+  margin-top: 4px;
 }
 .itemName {
-  border: 1px solid rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.65); */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.65);
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: space-between;

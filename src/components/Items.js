@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editItem } from '../actions'
+import { editItem, deleteItem } from '../actions'
 import Item from './Item'
 import styles from '../assets/css/components/items.css'
 
@@ -8,6 +8,7 @@ class Items extends Component {
   state = {
     changeEdit: false
   }
+
   //detecting clicks outside of component
   componentDidMount() {
     document.addEventListener('click', e => {
@@ -16,28 +17,32 @@ class Items extends Component {
       }
     })
   }
+
   componentWillUnmount() {
     document.removeEventListener('click')
   }
-  renderItem = (item, i) => {
-    const { editItem } = this.props
+
+  renderItem = item => {
+    const { editItem, deleteItem } = this.props
     const { changeEdit } = this.state
     return (
-      <li key={i}>
+      <li className={styles.itemContainer} key={item.id}>
         <Item
           changeEdit={changeEdit}
           editItem={editItem}
+          deleteItem={deleteItem}
           id={item.id}
           name={item.name}
         />
       </li>
     )
   }
+
   render() {
     const { items } = this.props
     return (
       <div className={styles.container}>
-        <ul>{items.map(this.renderItem)}</ul>
+        <ul className={styles.list}>{items.map(this.renderItem)}</ul>
       </div>
     )
   }
@@ -45,13 +50,14 @@ class Items extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editItem: item => dispatch(editItem(item))
+    editItem: item => dispatch(editItem(item)),
+    deleteItem: item => dispatch(deleteItem(item))
   }
 }
 
 const mapStateToProps = state => {
   return {
-    items: state.items.filter(item => item.type === 'content')
+    items: state.items
   }
 }
 
