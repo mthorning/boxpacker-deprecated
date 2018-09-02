@@ -6,14 +6,15 @@ import styles from '../assets/css/components/items.css'
 
 class Items extends Component {
   state = {
-    changeEdit: false
+    editMode: null,
+    deleteMode: null
   }
-
   //detecting clicks outside of component
   componentDidMount() {
     document.addEventListener('click', e => {
-      if (e.target.nodeName !== 'INPUT') {
-        this.setState({ changeEdit: !this.state.changeEdit })
+      if (this.state.editMode && e.target.nodeName !== 'INPUT') {
+        this.exitMode('edit')
+        this.exitMode('delete')
       }
     })
   }
@@ -22,13 +23,26 @@ class Items extends Component {
     document.removeEventListener('click')
   }
 
+  enterMode = (mode, id) => {
+    this.setState({ [`${mode}Mode`]: id })
+  }
+
+  exitMode = mode => {
+    this.setState({ [`${mode}Mode`]: null })
+  }
+
   renderItem = item => {
     const { editItem, deleteItem } = this.props
-    const { changeEdit } = this.state
+    const { editMode, deleteMode } = this.state
+    const toEdit = item.id === editMode
+    const toDelete = item.id === deleteMode && !editMode
     return (
       <li className={styles.itemContainer} key={item.id}>
         <Item
-          changeEdit={changeEdit}
+          editMode={toEdit}
+          deleteMode={toDelete}
+          enterMode={this.enterMode}
+          exitMode={this.exitMode}
           editItem={editItem}
           deleteItem={deleteItem}
           id={item.id}

@@ -3,37 +3,10 @@ import { Input, Icon } from 'antd'
 import styles from '../assets/css/components/items.css'
 
 export default class Item extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      deleteVisible: false,
-      edit: false,
-      prevEditProp: null,
-      name: props.name
-    }
-  }
-
-  enterEdit = () => {
-    this.setState({ edit: true })
-  }
-
-  exitEdit = () => {
-    this.setState({ edit: false, deleteVisible: false })
-  }
-
   changeValue = event => {
     const { editItem, id } = this.props
     const name = event.target.value
-    this.setState({ name })
     editItem({ name, id })
-  }
-
-  showDelete = () => {
-    this.setState({ deleteVisible: true })
-  }
-
-  hideDelete = () => {
-    this.setState({ deleteVisible: false })
   }
 
   delete = () => {
@@ -41,38 +14,26 @@ export default class Item extends Component {
     deleteItem(id)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.changeEdit !== prevState.prevEditProp) {
-      return {
-        ...prevState,
-        prevEditProp: nextProps.changeEdit,
-        edit: false,
-        deleteVisible: false
-      }
-    }
-    return null
-  }
-
   render() {
-    const { deleteVisible, edit, name } = this.state
+    const { editMode, deleteMode, enterMode, exitMode, id, name } = this.props
     return (
-      <div onBlur={this.exitEdit}>
-        {edit && (
+      <div onBlur={() => exitMode('edit')}>
+        {editMode && (
           <Input
             value={name}
-            onPressEnter={this.exitEdit}
+            onPressEnter={() => exitMode('edit')}
             onChange={this.changeValue}
           />
         )}
-        {!edit && (
+        {!editMode && (
           <p
-            onDoubleClick={this.enterEdit}
-            onMouseEnter={this.showDelete}
-            onMouseLeave={this.hideDelete}
+            onDoubleClick={() => enterMode('edit', id)}
+            onMouseEnter={() => enterMode('delete', id)}
+            onMouseLeave={() => exitMode('delete')}
             className={styles.itemName}
           >
             {name}
-            {deleteVisible && (
+            {deleteMode && (
               <Icon
                 onClick={this.delete}
                 className={styles.icon}
