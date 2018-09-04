@@ -14,8 +14,17 @@ export default class Item extends Component {
     deleteItem(id)
   }
 
+  clickHandler(id) {
+    const { singleClick } = this.props
+    if (singleClick) {
+      singleClick(id)
+    }
+    return null
+  }
+
   render() {
     const { editMode, deleteMode, enterMode, exitMode, id, name } = this.props
+
     return (
       <div onBlur={() => exitMode('edit')}>
         {editMode && (
@@ -27,6 +36,7 @@ export default class Item extends Component {
         )}
         {!editMode && (
           <p
+            onClick={() => this.clickHandler(id)}
             onDoubleClick={() => enterMode('edit', id)}
             onMouseEnter={() => enterMode('delete', id)}
             onMouseLeave={() => exitMode('delete')}

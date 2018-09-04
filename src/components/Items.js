@@ -32,13 +32,15 @@ class Items extends Component {
   }
 
   renderItem = item => {
-    const { editItem, deleteItem } = this.props
+    const { editItem, deleteItem, singleClick } = this.props
     const { editMode, deleteMode } = this.state
     const toEdit = item.id === editMode
     const toDelete = item.id === deleteMode && !editMode
+    const width = this.props.width + 'px'
     return (
-      <li className={styles.itemContainer} key={item.id}>
+      <li style={{ width }} className={styles.itemContainer} key={item.id}>
         <Item
+          singleClick={singleClick}
           editMode={toEdit}
           deleteMode={toDelete}
           enterMode={this.enterMode}
@@ -69,13 +71,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    items: state.items
-  }
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Items)

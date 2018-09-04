@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import testData from '../test-data'
-import Items from './components/Items'
+import Page from './components/Page'
 
 const store = createStore(rootReducer, testData)
 
@@ -19,7 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Items />
+        <Page />
       </Provider>
     )
   }
